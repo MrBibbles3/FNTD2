@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist Grid</title>
+    <link rel="stylesheet" href="NewIndex.css">
+</head>
+<body>
+    <canvas id="confettiCanvas"></canvas>
+    <div class="toplot">
+        <div class="center-header">
+            <h1 class="header-intro">MrBibble's Checklist!</h1>
+        </div>  
+
+        <div class="nav-wrapper">
+            <div class="nav-bar">
+                <button class="nav-button" data-toggle="about-section">About</button>
+                <a href="index.html" class="nav-button">Normal Units</a>
+                <a href="indexShiny.html" class="nav-button">Shiny Units</a>
+                <button class="nav-button" data-toggle="credits-section">Credits</button>
+                <button class="nav-button" data-toggle="contact-section">Contact</button>
+                <button id="signInBtn" class="nav-button">Sign in with Google</button>
+                <button id="signOutBtn" style="display:none;" class="nav-button">Sign Out</button>
+                <div class="center-header-google">
+                    <h1 id="userStatus" class="header-intro-google">Not signed in!</h1>
+                </div> 
+            </div>
+
+            <div id="about-section" class="nav-section">
+                <div class="nav-box"><p><b>Welcome to MrBibble's Checklist!!</b><br>
+                    <p style="max-width: 600px; margin: 0 auto; padding: 10px; font-size: 1rem; line-height: 1.5;"> 
+                        The units are sorted in rarity order, but do not follow any specific order otherwise.
+                        As I do this for fun on the side, new units may not appear for a day or 2 after a new update!<br><br>
+                        <b>Here are some features I've included:</b><br>
+                        -- Your progress will be saved to your device.<br>
+                        -- Evolutions are listed after their first unit for easy access, and have a glowing border!<br>
+                        -- Please <b>BE CAREFUL</b> of the <b>Tick All</b> and <b>Reset All</b> buttons! <span style="color: red;font-weight: bold;">You will lose all saved progress after clicking them!!</span><br>
+                        -- Let me know if there are any problems or suggestions by email: <a href="mailto:mrbibbles3@gmail.com">MrBibbles3@gmail.com</a><br>
+                        -- Goodluck completing your Index!<br><br>
+                        -- Featured in my "Completing the Index" series <a href="">here</a>! 
+                    </p> 
+                    </p>
+                </div>
+
+            </div>
+            <div id="credits-section" class="nav-section">
+                <p class="nav-box">Created by:<br>
+                <a href="https://www.youtube.com/@MrBibbles3">MrBibbles!</a><br><br>
+                BETA Tester, Bug fixes, Mobile Testing, and SteveRaglanEnthusiast:<br>
+                <a href="https://www.youtube.com/@MrBibbles3">KevTsuboi!</a><br><br>
+                PC Testing:<br>
+                <a href="https://www.twitch.tv/rangawrath">RangaWrath! (twitch link)</a></p>
+            </div>
+            <div id="contact-section" class="nav-section">
+                <p class="nav-box">Contact me (MrBibbles) on Discord at mrhobobob or email me at <a href="mailto:mrbibbles3@gmail.com">MrBibbles3@gmail.com</a><br>
+                    I also have my YouTube channel here: <a href="https://www.youtube.com/@MrBibbles3">MrBibbles!</a> <br></p>
+            </div>
+        </div>
+
+        <div class="decorative-lines">
+            <svg viewBox="0 0 540 20" xmlns="http://www.w3.org/2000/svg" class="wave-line">
+                <path d="M20 10 Q 70 0 120 10 T 220 10 T 320 10 T 420 10 T 520 10" stroke="#03AC13"  fill="transparent" stroke-width="10" stroke-linecap="round"/>
+            </svg>
+            <a href="transferQuests.html" class="nav-button">~~~TRANSFER QUESTS!!~~~</a>
+            <svg viewBox="0 0 540 20" xmlns="http://www.w3.org/2000/svg" class="wave-line">
+                <path d="M20 10 Q 70 0 120 10 T 220 10 T 320 10 T 420 10 T 520 10" stroke="#03AC13"  fill="transparent" stroke-width="10" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+
+        <div class="center-header">
+            <div class="buttons-header">
+                <div class="mobile-buttons">
+                    <button id="resetButton"><b>Reset All</b></button>
+                    <button id="checkAllButtonMobile" class="mobile-only"><b>Tick All</b></button>
+                </div>
+                <h1 class="header-units">Uncommon - Rare - Epic Units</h1>
+                <button id="checkAllButton" class="desktop-only"><b>Tick All</b></button>    
+            </div>
+        </div>
+    </div>
+
+
+    <div id="ureUnits" class="image-grid">
+
+    </div>
+
+   <div class="toplot2 desktop-only">
+        <div class="decorative-lines2">
+            <svg viewBox="0 0 540 20" xmlns="http://www.w3.org/2000/svg" class="wave-line">
+                <path d="M20 10 Q 70 0 120 10 T 220 10 T 320 10 T 420 10 T 520 10" stroke="#03AC13"  fill="transparent" stroke-width="10" stroke-linecap="round"/>
+            </svg>
+        </div>
+        <div class="center-header">
+            <h1 class="header-units">Mythic - Secret Units</h1>
+        </div>
+    </div>
+    <div class="toplot3 mobile-only">
+        <div class="decorative-lines3">
+            <svg viewBox="0 0 540 20" xmlns="http://www.w3.org/2000/svg" class="wave-line">
+                <path d="M20 10 Q 70 0 120 10 T 220 10 T 320 10 T 420 10 T 520 10" stroke="#03AC13"  fill="transparent" stroke-width="10" stroke-linecap="round"/>
+            </svg> 
+        </div>
+        <div class="center-header">
+                <h1 class="header-units">Mythic - Secret Units</h1>
+            </div> 
+    </div>
+    
+    
+    <div id="msUnits" class="image-grid">
+        
+    </div>
+
+    
+    <div class="toplot2 desktop-only">
+        <div class="decorative-lines2">
+            <svg viewBox="0 0 540 20" xmlns="http://www.w3.org/2000/svg" class="wave-line">
+                <path d="M20 10 Q 70 0 120 10 T 220 10 T 320 10 T 420 10 T 520 10" stroke="#03AC13"  fill="transparent" stroke-width="10" stroke-linecap="round"/>
+            </svg>
+        </div>
+        <div class="center-header">
+            <h1 class="header-units">Nightmare - Apex - Forgotten Units</h1>
+        </div>
+    </div>
+    <div class="toplot3 mobile-only">
+        <div class="decorative-lines3">
+            <svg viewBox="0 0 540 20" xmlns="http://www.w3.org/2000/svg" class="wave-line">
+                <path d="M20 10 Q 70 0 120 10 T 220 10 T 320 10 T 420 10 T 520 10" stroke="#03AC13"  fill="transparent" stroke-width="10" stroke-linecap="round"/>
+            </svg>
+        </div>
+        <div class="center-header2">
+                <h1 class="header-units">Nightmare - Apex - Forgotten Units</h1>
+        </div> 
+    </div>
+ 
+    <div id="nafUnits" class="image-grid">
+        
+    </div>
+    
+    <div class="toplot2 desktop-only">
+        <button class="back-to-top" id="backToTopBtn"> <b>Back to Top</b></button>
+        <button class="back-to-bottom" id="backToBottomBtn"> <b>Back to Bottom</b></button>
+        <div class="progress-counter" id="progress-counter">
+            <div class="progress-bar-fill" id="progress-fill"></div>
+            <span id="progress-text">0/300</span>
+        </div>
+        <div class="decorative-lines2">
+            <svg viewBox="0 0 540 20" xmlns="http://www.w3.org/2000/svg" class="wave-line">
+                <path d="M20 10 Q 70 0 120 10 T 220 10 T 320 10 T 420 10 T 520 10" stroke="#03AC13"  fill="transparent" stroke-width="10" stroke-linecap="round"/>
+            </svg>
+        </div>
+    </div>
+    <div class="toplot mobile-only">
+        <button class="back-to-top-Mobile" id="topMobile"> <b>Back to Top</b></button>
+        <button class="back-to-bottom-Mobile" id="bottomMobile"> <b>Back to Bottom</b></button>
+        <div class="progress-counter-Mobile" id="progress-counter-Mobile">
+            <div class="progress-bar-fill-Mobile" id="progress-fill-Mobile"></div>
+            <span id="progress-text-Mobile">0/300</span>
+        </div>
+        <div class="decorative-lines mobile-only">
+            <svg viewBox="0 0 540 20" xmlns="http://www.w3.org/2000/svg" class="wave-line">
+                <path d="M20 10 Q 70 0 120 10 T 220 10 T 320 10 T 420 10 T 520 10" stroke="#03AC13"  fill="transparent" stroke-width="10" stroke-linecap="round"/>
+            </svg>
+             
+        </div>
+        <div class="empty-Mobile"></div> 
+    </div>
+
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <p id="confirmMessage">Are you sure?</p>
+            <div class="modal-buttons">
+            <button id="confirmYes">Yes</button>
+            <button id="confirmNo">No</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="NewIndex.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
+
+
+</body>
+</html>
