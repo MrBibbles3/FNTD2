@@ -508,6 +508,8 @@ tabsB.forEach((tabB, i) =>
 
     // activate clicked tab
     tabB.classList.add("active");
+    clickSound.currentTime = 0;
+    clickSound.play();
 
     //const color = tabB.dataset.color.startsWith("#") ? tabB.dataset.color : "#" + tabB.dataset.color;
     //tabB.style.background = color;
