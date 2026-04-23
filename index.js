@@ -10,6 +10,8 @@ let currentChecklistState = {};
 
 const signInBtn = document.getElementById("signInBtn");
 const signOutBtn = document.getElementById("signOutBtn");
+const mobileSignInBtn = document.getElementById("mobileSignInBtn");
+const mobileSignOutBtn = document.getElementById("mobileSignOutBtn");
 const userStatus = document.getElementById("userStatus");
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -70,7 +72,23 @@ signInBtn?.addEventListener("click", async () => {
   }
 });
 
+mobileSignInBtn?.addEventListener("click", async () => {
+  try {
+    await auth.signInWithPopup(provider);
+  } catch (err) {
+    console.error("Google sign-in failed:", err);
+  }
+});
+
 signOutBtn?.addEventListener("click", async () => {
+  try {
+    await auth.signOut();
+  } catch (err) {
+    console.error("Sign-out failed:", err);
+  }
+});
+
+mobileSignOutBtn?.addEventListener("click", async () => {
   try {
     await auth.signOut();
   } catch (err) {
@@ -83,8 +101,10 @@ auth.onAuthStateChanged(async (user) => {
   currentUser = user;
 
   if (user) {
-    signInBtn.style.display = "none";
-    signOutBtn.style.display = "inline-block";
+    signInBtn && (signInBtn.style.display = "none");
+    signOutBtn && (signOutBtn.style.display = "inline-block");
+    mobileSignInBtn && (mobileSignInBtn.style.display = "none");
+    mobileSignOutBtn && (mobileSignOutBtn.style.display = "inline-block");
 
     if (userStatus) {
       userStatus.innerHTML = `<span>Signed</span><span style="display:block; margin-top:2px;">in!</span>`;
@@ -92,8 +112,6 @@ auth.onAuthStateChanged(async (user) => {
 
     const localState = getLocalChecklistState();
     const cloudState = await loadChecklistFromFirestore(user);
-
-    // cloud wins if same key exists in both
     const mergedState = { ...localState, ...cloudState };
 
     applyChecklistState(mergedState);
@@ -104,8 +122,10 @@ auth.onAuthStateChanged(async (user) => {
       updatedAt: firebase.firestore.FieldValue.serverTimestamp()
     }, { merge: true });
   } else {
-    signInBtn.style.display = "inline-block";
-    signOutBtn.style.display = "none";
+    signInBtn && (signInBtn.style.display = "");
+    signOutBtn && (signOutBtn.style.display = "none");
+    mobileSignInBtn && (mobileSignInBtn.style.display = "inline-block");
+    mobileSignOutBtn && (mobileSignOutBtn.style.display = "none");
 
     if (userStatus) {
       userStatus.innerHTML = `<span>Not</span><span style="display:block; margin-top:2px;">Signed in!</span>`;
@@ -715,47 +735,56 @@ if (activeTab)
 
 
 
+//--------------------------------------------------------------------Buttons-----------------------------------------------------------------
+
+
 //--------------------------------------------------------------------Side Buttons-----------------------------------------------------------------
 
-
-const eventBox = document.querySelector(".event-box");
-const eventImg = eventBox.querySelector("img");
-
-eventBox.addEventListener("click", () => {
-  const isEventsVisible = eventsTop.style.display === "flex";
-
-  if (isEventsVisible) {
-    // 👉 GO BACK TO SEASONS
-    eventsTop.style.display = "none";
-    seasonsTop.style.display = "flex";
-
-    document.querySelector('.tab-top.seasons .tabT[data-tab="s1"]')?.click();
-
-    // change image back to event
-    eventImg.src = "images/event.gif";
-
-  } else {
-    // 👉 GO TO EVENTS
-    seasonsTop.style.display = "none";
-    eventsTop.style.display = "flex";
-
-    document.querySelector('.tab-top.events .tabT[data-tab="Ha"]')?.click();
-
-    // change image to season
-    eventImg.src = "images/season.gif";
-  }
-});
-
-
-const shinyBox = document.querySelector(".shiny-box");
+const eventBoxes = document.querySelectorAll(".event-box");
+const shinyBoxes = document.querySelectorAll(".shiny-box");
 const mainContainer = document.querySelector(".tab-container");
 
-shinyBox?.addEventListener("click", () => {
-  isShinyMode = !isShinyMode;
+function setAllEventButtonImages(src) {
+  eventBoxes.forEach(box => {
+    const img = box.querySelector("img");
+    if (img) img.src = src;
+  });
+}
 
-  mainContainer.classList.toggle("shiny-mode", isShinyMode);
+eventBoxes.forEach(box => {
+  box.addEventListener("click", () => {
+    const isEventsVisible = eventsTop.style.display === "flex";
 
-  init();
+    if (isEventsVisible) {
+      // GO BACK TO SEASONS
+      eventsTop.style.display = "none";
+      seasonsTop.style.display = "flex";
+
+      document.querySelector('.tab-top.seasons .tabT[data-tab="s1"]')?.click();
+
+      // set all event buttons back to event.gif
+      setAllEventButtonImages("images/event.gif");
+    } else {
+      // GO TO EVENTS
+      seasonsTop.style.display = "none";
+      eventsTop.style.display = "flex";
+
+      document.querySelector('.tab-top.events .tabT[data-tab="Ha"]')?.click();
+
+      // set all event buttons to season.gif
+      setAllEventButtonImages("images/season.gif");
+    }
+  });
+});
+
+shinyBoxes.forEach(box => {
+  box.addEventListener("click", () => {
+    isShinyMode = !isShinyMode;
+
+    mainContainer?.classList.toggle("shiny-mode", isShinyMode);
+
+    init();
+  });
 });
 
 
@@ -820,7 +849,50 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mobileDropdown = document.getElementById("mobileDropdown");
 
+mobileMenuBtn?.addEventListener("click", (e) => {
+  e.stopPropagation();
+  mobileDropdown?.classList.toggle("show");
+});
+
+document.addEventListener("click", (e) => {
+  if (!mobileDropdown || !mobileMenuBtn) return;
+
+  const clickedInsideMenu = mobileDropdown.contains(e.target);
+  const clickedMenuButton = mobileMenuBtn.contains(e.target);
+
+  if (!clickedInsideMenu && !clickedMenuButton) {
+    mobileDropdown.classList.remove("show");
+  }
+});
+
+const mobileMenuItems = document.querySelectorAll(".mobile-menu-item");
+
+mobileMenuItems.forEach(item => {
+  item.addEventListener("click", () => {
+    const action = item.dataset.mobileAction;
+
+    if (action === "about") {
+      document.querySelector('.nav-button[data-toggle="about-section"]')?.click();
+    }
+
+    if (action === "credits") {
+      document.querySelector('.nav-button[data-toggle="credits-section"]')?.click();
+    }
+
+    if (action === "contact") {
+      document.querySelector('.nav-button[data-toggle="contact-section"]')?.click();
+    }
+
+    if (action === "clear") {
+      document.getElementById("clearAllButton")?.click();
+    }
+
+    mobileDropdown?.classList.remove("show");
+  });
+});
 
 
 

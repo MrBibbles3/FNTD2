@@ -17,24 +17,23 @@
 
     <div class="toplot">
         <div class="center-header">
-                    <button class="nav-button" data-toggle="about-section" style="font-size: 25px;">About</button>
-                    <button class="nav-button" data-toggle="credits-section" style="font-size: 25px;">Credits</button>
-                    <h1 class="header-intro">MrBibble's Checklist! 2</h1>
-                    <button class="nav-button" data-toggle="contact-section"style="font-size: 25px;">Contact</button>
-                    <button id="signInBtn" class="nav-button google-btn"><span>Google</span><span class="sub">Sign in</span></button>
-                    <button id="signOutBtn" style="display:none;" class="nav-button">Sign Out</button>
-                    <div class="center-header-google">
-                    
-        </div>  
+            <button class="nav-button" data-toggle="about-section" style="font-size: 25px;">About</button>
+            <button class="nav-button" data-toggle="credits-section" style="font-size: 25px;">Credits</button>
+            <h1 class="header-intro">MrBibble's Checklist!</h1>
+            <button class="nav-button" data-toggle="contact-section"style="font-size: 25px;">Contact</button>
+            <button id="signInBtn" class="nav-button google-btn desktop-only"><span>Google<br></span><span class="sub">Sign in</span></button>
+            <button id="signOutBtn" style="display:none;" class="nav-button">Sign Out</button>
+            <div class="center-header-google"></div>  
 
-        
-
-            <div id="about-section" class="nav-section">
+            
+        </div>
+    </div>
+    <div id="about-section" class="nav-section">
                 <div class="nav-box"><p class="nav-head"><b>Welcome to MrBibbles' Checklist!!</b><br></p> 
                     <p class="nav-text"> 
                         The units are sorted in rarity order, but do not follow any specific order otherwise.
                         As I do this for fun on the side, new units may not appear for up to a week after a new update!<br><br>
-                        <b style="font-size: 30px; color: white">Here are some features I've included:</b><br>
+                        <b class="features-title" color: white">Here are some features I've included:</b><br>
                         -- Your progress will be saved to your device.<br>
                         -- Please <b>BE CAREFUL</b> of the <b>Reset All</b> button! <span style="color: red;font-weight: bold;">You will lose all saved progress after clicking it!!</span><br>
                         -- Let me know if there are any problems or suggestions by email: <a href="mailto:mrbibbles3@gmail.com">MrBibbles3@gmail.com</a>, or on my discord server! <a href="https://www.discord.gg/bibbles">discord.gg/bibbles</a><br>
@@ -47,24 +46,23 @@
 
             <div id="credits-section" class="nav-section">
                 <div class="credits-container">
-
                     <div class="credit-box">
-                    <p class="credit-title">Created by:</p>
-                    <p class="credit-name">
-                        MrBibbles!
-                    </p>
+                        <p class="credit-title">Created by:</p>
+                        <p class="credit-name">
+                            MrBibbles!
+                        </p>
                     </div>
 
                     <div class="credit-box">
-                    <p class="credit-title" style="line-height: 1.2;">
-                        Steve Raglan Enthusiast:
-                    </p>
-                    <p class="credit-name">KevTsuboi!</p>
+                        <p class="credit-title" style="line-height: 1.2;">
+                            Steve Raglan Enthusiast:
+                        </p>
+                        <p class="credit-name">KevTsuboi!</p>
                     </div>
 
                     <div class="credit-box">
-                    <p class="credit-title">Image sorting:</p>
-                    <p class="credit-name">Suki!</p>
+                        <p class="credit-title">Image sorting:</p>
+                        <p class="credit-name">Suki!</p>
                     </div>
 
                 </div>
@@ -77,7 +75,29 @@
                         I also have my YouTube channel here: <a href="https://www.youtube.com/@MrBibbles3">MrBibbles!</a> <br></p>
                 </div>
             </div>
+
+    <div class="mobile-top">
+        <button class="mobile-icon-btn" id="mobileMenuBtn">☰</button>
+
+        <div class="mobile-dropdown" id="mobileDropdown">
+            <button class="mobile-menu-item" data-mobile-action="about">About</button>
+            <button class="mobile-menu-item" data-mobile-action="credits">Credits</button>
+            <button class="mobile-menu-item" data-mobile-action="contact">Contact</button>
+            <button class="mobile-menu-item danger" data-mobile-action="clear">Clear All</button>
         </div>
+
+        <button id="mobileSignInBtn" class="mobile-google-btn">
+            <span>Google<br></span><span class="sub">Sign in</span>
+        </button>
+
+        <button id="mobileSignOutBtn" class="mobile-google-btn" style="display:none;">
+            Sign Out
+        </button>
+    </div>
+
+    <div class="mobile-side-buttons">
+        <div class="side-btn event-box mobile-event-box"><img src="images/event.gif" alt="Event Button"></div>
+        <div class="side-btn shiny-box mobile-shiny-box"><img src="images/shiny.gif" alt="Shiny Button"></div>
     </div>
 
 <!---------------------------------------------------------TOP----------------------------------------------------------------------->
