@@ -1,0 +1,11 @@
+open terminal in this folder.
+node createunit.js
+
+Season/Event name
+Rarity
+HOW MANY TO ADD, so just 1
+
+Open the json and fix the comma error
+
+Paste the image in normal and shiny rarity folders. 
+DONESO

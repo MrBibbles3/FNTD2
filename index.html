@@ -3,188 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checklist Grid</title>
-    <link rel="stylesheet" href="NewIndex.css">
+    <title>MrBibble's Checklist!</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
 </head>
 <body>
+
     <canvas id="confettiCanvas"></canvas>
+
     <div class="toplot">
         <div class="center-header">
-            <h1 class="header-intro">MrBibble's Checklist!</h1>
+                    <button class="nav-button" data-toggle="about-section" style="font-size: 25px;">About</button>
+                    <button class="nav-button" data-toggle="credits-section" style="font-size: 25px;">Credits</button>
+                    <h1 class="header-intro">MrBibble's Checklist!</h1>
+                    <button class="nav-button" data-toggle="contact-section"style="font-size: 25px;">Contact</button>
+                    <button id="signInBtn" class="nav-button google-btn"><span>Google</span><span class="sub">Sign in</span></button>
+                    <button id="signOutBtn" style="display:none;" class="nav-button">Sign Out</button>
+                    <div class="center-header-google">
+                    
         </div>  
 
-        <div class="nav-wrapper">
-            <div class="nav-bar">
-                <button class="nav-button" data-toggle="about-section">About</button>
-                <a href="index.html" class="nav-button">Normal Units</a>
-                <a href="indexShiny.html" class="nav-button">Shiny Units</a>
-                <button class="nav-button" data-toggle="credits-section">Credits</button>
-                <button class="nav-button" data-toggle="contact-section">Contact</button>
-                <button id="signInBtn" class="nav-button">Sign in with Google</button>
-                <button id="signOutBtn" style="display:none;" class="nav-button">Sign Out</button>
-                <div class="center-header-google">
-                    <h1 id="userStatus" class="header-intro-google">Not signed in!</h1>
-                </div> 
-            </div>
+        
 
             <div id="about-section" class="nav-section">
-                <div class="nav-box"><p><b>Welcome to MrBibble's Checklist!!</b><br>
-                    <p style="max-width: 600px; margin: 0 auto; padding: 10px; font-size: 1rem; line-height: 1.5;"> 
+                <div class="nav-box"><p class="nav-head"><b>Welcome to MrBibbles' Checklist!!</b><br></p> 
+                    <p class="nav-text"> 
                         The units are sorted in rarity order, but do not follow any specific order otherwise.
-                        As I do this for fun on the side, new units may not appear for a day or 2 after a new update!<br><br>
-                        <b>Here are some features I've included:</b><br>
+                        As I do this for fun on the side, new units may not appear for up to a week after a new update!<br><br>
+                        <b style="font-size: 30px; color: white">Here are some features I've included:</b><br>
                         -- Your progress will be saved to your device.<br>
-                        -- Evolutions are listed after their first unit for easy access, and have a glowing border!<br>
-                        -- Please <b>BE CAREFUL</b> of the <b>Tick All</b> and <b>Reset All</b> buttons! <span style="color: red;font-weight: bold;">You will lose all saved progress after clicking them!!</span><br>
-                        -- Let me know if there are any problems or suggestions by email: <a href="mailto:mrbibbles3@gmail.com">MrBibbles3@gmail.com</a><br>
+                        -- Please <b>BE CAREFUL</b> of the <b>Reset All</b> button! <span style="color: red;font-weight: bold;">You will lose all saved progress after clicking it!!</span><br>
+                        -- Let me know if there are any problems or suggestions by email: <a href="mailto:mrbibbles3@gmail.com">MrBibbles3@gmail.com</a>, or on my discord server! <a href="https://www.discord.gg/bibbles">discord.gg/bibbles</a><br>
                         -- Goodluck completing your Index!<br><br>
-                        -- Featured in my "Completing the Index" series <a href="">here</a>! 
-                    </p> 
+                        -- Featured in my "Completing the Index" series <a href="https://www.youtube.com/playlist?list=PL3RSCOekHvTn9hJf6g2EKfwlc6gMRxA4T">here</a>! 
                     </p>
                 </div>
 
             </div>
+
             <div id="credits-section" class="nav-section">
-                <p class="nav-box">Created by:<br>
-                <a href="https://www.youtube.com/@MrBibbles3">MrBibbles!</a><br><br>
-                BETA Tester, Bug fixes, Mobile Testing, and SteveRaglanEnthusiast:<br>
-                <a href="https://www.youtube.com/@MrBibbles3">KevTsuboi!</a><br><br>
-                PC Testing:<br>
-                <a href="https://www.twitch.tv/rangawrath">RangaWrath! (twitch link)</a></p>
-            </div>
-            <div id="contact-section" class="nav-section">
-                <p class="nav-box">Contact me (MrBibbles) on Discord at mrhobobob or email me at <a href="mailto:mrbibbles3@gmail.com">MrBibbles3@gmail.com</a><br>
-                    I also have my YouTube channel here: <a href="https://www.youtube.com/@MrBibbles3">MrBibbles!</a> <br></p>
-            </div>
-        </div>
+                <div class="credits-container">
 
-        <div class="decorative-lines">
-            <svg viewBox="0 0 540 20" xmlns="http://www.w3.org/2000/svg" class="wave-line">
-                <path d="M20 10 Q 70 0 120 10 T 220 10 T 320 10 T 420 10 T 520 10" stroke="#03AC13"  fill="transparent" stroke-width="10" stroke-linecap="round"/>
-            </svg>
-            <a href="transferQuests.html" class="nav-button">~~~TRANSFER QUESTS!!~~~</a>
-            <svg viewBox="0 0 540 20" xmlns="http://www.w3.org/2000/svg" class="wave-line">
-                <path d="M20 10 Q 70 0 120 10 T 220 10 T 320 10 T 420 10 T 520 10" stroke="#03AC13"  fill="transparent" stroke-width="10" stroke-linecap="round"/>
-            </svg>
-        </div>
+                    <div class="credit-box">
+                    <p class="credit-title">Created by:</p>
+                    <p class="credit-name">
+                        MrBibbles!
+                    </p>
+                    </div>
 
+                    <div class="credit-box">
+                    <p class="credit-title" style="line-height: 1.2;">
+                        Steve Raglan Enthusiast:
+                    </p>
+                    <p class="credit-name">KevTsuboi!</p>
+                    </div>
 
-        <div class="center-header">
-            <div class="buttons-header">
-                <div class="mobile-buttons">
-                    <button id="resetButton"><b>Reset All</b></button>
-                    <button id="checkAllButtonMobile" class="mobile-only"><b>Tick All</b></button>
+                    <div class="credit-box">
+                    <p class="credit-title">Image sorting:</p>
+                    <p class="credit-name">Suki!</p>
+                    </div>
+
                 </div>
-                <h1 class="header-units">Uncommon - Rare - Epic Units</h1>
-                <button id="checkAllButton" class="desktop-only"><b>Tick All</b></button>    
+            </div>
+
+            
+            <div id="contact-section" class="nav-section">
+                <div class="nav-box">
+                    <p class="nav-text">Contact me (MrBibbles) on Discord at mrhobobob or email me at <a href="mailto:mrbibbles3@gmail.com">MrBibbles3@gmail.com</a><br>
+                        I also have my YouTube channel here: <a href="https://www.youtube.com/@MrBibbles3">MrBibbles!</a> <br></p>
+                </div>
             </div>
         </div>
     </div>
 
+<!---------------------------------------------------------TOP----------------------------------------------------------------------->
 
-    <div id="ureUnits" class="image-grid">
 
-    </div>
 
-   <div class="toplot2 desktop-only">
-        <div class="decorative-lines2">
-            <svg viewBox="0 0 540 20" xmlns="http://www.w3.org/2000/svg" class="wave-line">
-                <path d="M20 10 Q 70 0 120 10 T 220 10 T 320 10 T 420 10 T 520 10" stroke="#03AC13"  fill="transparent" stroke-width="10" stroke-linecap="round"/>
-            </svg>
+<!-------------------------------------------------------------------------------------------------------------------------------->
+
+    <div class="tab-container">
+        <div class="tab-top seasons">
+            <div class="white-top"><button class="tabT active" data-tab="s1" data-color="#e5b52a" data-short="S1" data-full="Season 1"><span>S1</span></button></div>
+            <div class="white-top"><button class="tabT" data-tab="s2" data-color="#169d19" data-short="S2" data-full="Season 2"><span>S2</span></button></div><!--2f4f2e-->
+            <div class="white-top"><button class="tabT" data-tab="s3" data-color="#393960" data-short="S3" data-full="Season 3"><span>S3</span></button></div>
+            <div class="white-top"><button class="tabT" data-tab="s4" data-color="#5a6cd8" data-short="S4" data-full="Season 4"><span>S4</span></button></div> 
         </div>
-        <div class="center-header">
-            <h1 class="header-units">Mythic - Secret Units</h1>
+
+        <div class="tab-top events">
+            <div class="white-top"><button class="tabT" data-tab="Ha" data-color="#c10401" data-short="Ha" data-full="Halloween"><span>Ha</span></button></div>
+            <div class="white-top"><button class="tabT" data-tab="Ch" data-color="#1f6cb3" data-short="Ch" data-full="Christmas"><span>Ch</span></button></div>
+            <div class="white-top"><button class="tabT" data-tab="Og" data-color="#162146" data-short="Og" data-full="Og FNTD"><span>Og</span></button></div>
+            <div class="white-top"><button class="tabT" data-tab="Me" data-color="#483326" data-short="Me" data-full="Medieval"><span>Me</span></button></div>
         </div>
-    </div>
-    <div class="toplot3 mobile-only">
-        <div class="decorative-lines3">
-            <svg viewBox="0 0 540 20" xmlns="http://www.w3.org/2000/svg" class="wave-line">
-                <path d="M20 10 Q 70 0 120 10 T 220 10 T 320 10 T 420 10 T 520 10" stroke="#03AC13"  fill="transparent" stroke-width="10" stroke-linecap="round"/>
-            </svg> 
+
+
+
+        <div class="tabT-content active" id="s1">
+            <div id="s1Units" class="image-grid"></div>
         </div>
-        <div class="center-header">
-                <h1 class="header-units">Mythic - Secret Units</h1>
-            </div> 
-    </div>
-    
-    
-    <div id="msUnits" class="image-grid">
+
+        <div class="tabT-content" id="s2">
+            <div id="s2Units" class="image-grid"></div>
+        </div>
+
+        <div class="tabT-content" id="s3">
+            <div id="s3Units" class="image-grid"></div>
+        </div>
+
+        <div class="tabT-content" id="s4">
+            <div id="s4Units" class="image-grid"></div>
+        </div>
+
         
+
+        <div class="tabT-content active" id="Ha">
+            <div id="HaUnits" class="image-grid"></div>
+        </div>
+
+        <div class="tabT-content" id="Ch">
+            <div id="ChUnits" class="image-grid"></div>
+        </div>
+
+        <div class="tabT-content" id="Og">
+            <div id="OgUnits" class="image-grid"></div>
+        </div>
+
+        <div class="tabT-content" id="Me">
+            <div id="MeUnits" class="image-grid"></div>
+        </div>
+        
+
+
+
+
+
+
+        <div class="side-buttons">
+            <div class="side-btn event-box"><img src="images/event.gif" alt="Event Button"></div>
+            <div class="side-btn shiny-box"><img src="images/shiny.gif" alt="Shiny Button"></div> <!--sparkling shiny with rainbow outside moving-->
+        </div>
+
     </div>
 
-    
-    <div class="toplot2 desktop-only">
-        <div class="decorative-lines2">
-            <svg viewBox="0 0 540 20" xmlns="http://www.w3.org/2000/svg" class="wave-line">
-                <path d="M20 10 Q 70 0 120 10 T 220 10 T 320 10 T 420 10 T 520 10" stroke="#03AC13"  fill="transparent" stroke-width="10" stroke-linecap="round"/>
-            </svg>
-        </div>
-        <div class="center-header">
-            <h1 class="header-units">Nightmare - Apex - Forgotten Units</h1>
-        </div>
+     <div class="clear-box" id="clearAllButton" title="Clear all">
+            <span>X</span>
     </div>
-    <div class="toplot3 mobile-only">
-        <div class="decorative-lines3">
-            <svg viewBox="0 0 540 20" xmlns="http://www.w3.org/2000/svg" class="wave-line">
-                <path d="M20 10 Q 70 0 120 10 T 220 10 T 320 10 T 420 10 T 520 10" stroke="#03AC13"  fill="transparent" stroke-width="10" stroke-linecap="round"/>
-            </svg>
-        </div>
-        <div class="center-header2">
-                <h1 class="header-units">Nightmare - Apex - Forgotten Units</h1>
-        </div> 
-    </div>
+
  
-    <div id="nafUnits" class="image-grid">
-        
-    </div>
-    
-    <div class="toplot2 desktop-only">
-        <button class="back-to-top" id="backToTopBtn"> <b>Back to Top</b></button>
-        <button class="back-to-bottom" id="backToBottomBtn"> <b>Back to Bottom</b></button>
-        <div class="progress-counter" id="progress-counter">
-            <div class="progress-bar-fill" id="progress-fill"></div>
-            <span id="progress-text">0/300</span>
-        </div>
-        <div class="decorative-lines2">
-            <svg viewBox="0 0 540 20" xmlns="http://www.w3.org/2000/svg" class="wave-line">
-                <path d="M20 10 Q 70 0 120 10 T 220 10 T 320 10 T 420 10 T 520 10" stroke="#03AC13"  fill="transparent" stroke-width="10" stroke-linecap="round"/>
-            </svg>
-        </div>
-    </div>
-    <div class="toplot mobile-only">
-        <button class="back-to-top-Mobile" id="topMobile"> <b>Back to Top</b></button>
-        <button class="back-to-bottom-Mobile" id="bottomMobile"> <b>Back to Bottom</b></button>
-        <div class="progress-counter-Mobile" id="progress-counter-Mobile">
-            <div class="progress-bar-fill-Mobile" id="progress-fill-Mobile"></div>
-            <span id="progress-text-Mobile">0/300</span>
-        </div>
-        <div class="decorative-lines mobile-only">
-            <svg viewBox="0 0 540 20" xmlns="http://www.w3.org/2000/svg" class="wave-line">
-                <path d="M20 10 Q 70 0 120 10 T 220 10 T 320 10 T 420 10 T 520 10" stroke="#03AC13"  fill="transparent" stroke-width="10" stroke-linecap="round"/>
-            </svg>
-             
-        </div>
-        <div class="empty-Mobile"></div> 
-    </div>
 
-    <div id="confirmModal" class="modal">
-        <div class="modal-content">
-            <p id="confirmMessage">Are you sure?</p>
-            <div class="modal-buttons">
-            <button id="confirmYes">Yes</button>
-            <button id="confirmNo">No</button>
-            </div>
-        </div>
-    </div>
 
+
+
+
+
+
+
+
+
+    <div id="modalOverlay" class="modal-overlay"></div>
 
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-    <script src="NewIndex.js"></script>
+    <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     
 
 
 </body>
 </html>
+
+<!--<div id="credits-section" class="nav-section">
+                <div class="nav-box"><p class="nav-head" style="line-height: 0.3;">Created by:</p>
+                <p class="nav-head" style="font-size: 38px;"><a href="https://www.youtube.com/@MrBibbles3">MrBibbles!</a></p>
+                <p>BETA Tester, Bug fixes, Mobile Testing, and SteveRaglanEnthusiast:</p><br>
+                <a href="https://www.youtube.com/@MrBibbles3">KevTsuboi!</a><br><br>
+                PC Testing:<br>
+                <a href="https://www.twitch.tv/rangawrath">RangaWrath! (twitch link)</a></div>
+            </div>-->
+
+                <!-- Buttons for later maybe
+    <div class="mobile-buttons">
+        <button id="checkAllButtonMobile" class="mobile-only"><b>Tick All</b></button>
+        <button id="resetButtonMobile" class="mobile-only"><b>Reset All</b></button>
+    </div>
+    <div class="desktop-buttons">
+        <button id="checkAllButton" class="desktop-only"><b>Tick All</b></button> 
+        <button id="resetButton" class="desktop-only"><b>Reset All</b></button>   
+    </div>-->
+
+        <!--<div class="tab-bottom">
+            <div class="white-bottom"><button class="tabB active" data-tabB="Seasons" data-color="#fec92f">Seasons</button></div>
+            <div class="white-bottom"><button class="tabB" data-tabB="Events" data-color="#dd8b2b">Events</button></div>
+        </div>
+        
+        
+        
+        
+        <h1 id="userStatus" class="header-intro-google"><span>Not</span><span style="display:block; margin-top:2px;">Signed in!</span></h1>
+        
+        
+        
+        -->

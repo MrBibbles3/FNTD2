@@ -1,0 +1,84 @@
+{
+  "Season1": {
+    "units": [
+      { "id": "1", "rarity": "hero"      },
+      { "id": "2", "rarity": "hero"      },
+      { "id": "1", "rarity": "uncommon"  },
+      { "id": "2", "rarity": "uncommon"  },
+      { "id": "3", "rarity": "uncommon"  },
+      { "id": "4", "rarity": "uncommon"  },
+      { "id": "1", "rarity": "rare"      },
+      { "id": "2", "rarity": "rare"      }, 
+      { "id": "1", "rarity": "epic"      },
+      { "id": "2", "rarity": "epic"      },
+      { "id": "3", "rarity": "epic"      },
+      { "id": "4", "rarity": "epic"      },
+      { "id": "5", "rarity": "epic"      },
+      { "id": "6", "rarity": "epic",     "type": "pet" },
+      { "id": "7", "rarity": "epic",     "type": "pet" },
+      { "id": "8", "rarity": "epic",     "type": "pet" },
+      { "id": "1", "rarity": "mythic"    },
+      { "id": "2", "rarity": "mythic"    },
+      { "id": "3", "rarity": "mythic"    },
+      { "id": "4", "rarity": "mythic"    },
+      { "id": "5", "rarity": "mythic",   "type": "pet" },
+      { "id": "6", "rarity": "mythic",   "type": "pet" },
+      { "id": "1", "rarity": "secret"    },
+      { "id": "2", "rarity": "secret"    },
+      { "id": "3", "rarity": "secret"    },
+      { "id": "4", "rarity": "secret"    },
+      { "id": "5", "rarity": "secret"    },
+      { "id": "6", "rarity": "secret",   "type": "pet" },
+      { "id": "1", "rarity": "nightmare" },
+      { "id": "2", "rarity": "nightmare" },
+      { "id": "1", "rarity": "exclusive" },
+      { "id": "2", "rarity": "exclusive" },
+      { "id": "3", "rarity": "exclusive" },
+      { "id": "4", "rarity": "exclusive" },
+      { "id": "5", "rarity": "exclusive" },
+      { "id": "6", "rarity": "exclusive" }
+      
+    ]
+  },
+  "Halloween": {
+    "units": [
+      { "id": "1", "rarity": "rare",     "evolution": true },
+      { "id": "1", "rarity": "epic",     "type": "pet" },
+      { "id": "1", "rarity": "mythic"    },
+      { "id": "2", "rarity": "mythic",   "evolution": true },
+      { "id": "3", "rarity": "mythic",   "type": "pet" },
+      { "id": "1", "rarity": "secret",   "type": "pet" },
+      { "id": "2", "rarity": "secret",   "type": "pet" },
+      { "id": "1", "rarity": "exclusive" },
+      { "id": "2", "rarity": "exclusive" },
+      { "id": "1", "rarity": "nightmare" },
+      { "id": "1", "rarity": "apex"      }
+    ]
+  },
+    "Season2": {
+    "units": [
+
+    ]
+  },
+    "Og": {
+    "units": [
+      
+    ]
+  },
+    "Season3": {
+    "units": [
+      
+    ]
+  },
+    "Medieval": {
+    "units": [
+      
+    ]
+  },
+    "Season4": {
+    "units": [
+      
+    ]
+  }
+}
+
