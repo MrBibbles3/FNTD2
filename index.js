@@ -5,7 +5,12 @@ const whiteB = document.querySelectorAll(".white-bottom");
 const container = document.querySelector(".tab-container");
 const contents = document.querySelectorAll(".tabT-content");
 let isShinyMode = false;
+let currentUser = null;
+let currentChecklistState = {};
 
+const signInBtn = document.getElementById("signInBtn");
+const signOutBtn = document.getElementById("signOutBtn");
+const userStatus = document.getElementById("userStatus");
 
 window.addEventListener("DOMContentLoaded", () => {
   const firstBottomTab = document.querySelector('.tabB[data-tabB="Seasons"]');
@@ -13,14 +18,112 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 
+//---------------------------------Google----------------------------------------------//
+const firebaseConfig = {
+  apiKey: "AIzaSyDcVP4gQ0sDW23Xp-PUTkjetqGSHRiPoiA",
+  authDomain: "fntd2checklist.firebaseapp.com",
+  projectId: "fntd2checklist",
+  storageBucket: "fntd2checklist.firebasestorage.app",
+  messagingSenderId: "820721121098",
+  appId: "1:820721121098:web:14b2b3518c79e4cce733b3"
+};
 
-//------------------------------
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+const provider = new firebase.auth.GoogleAuthProvider();
+
+async function loadChecklistFromFirestore(user) {
+  try {
+    const docSnap = await db.collection("checklists").doc(user.uid).get();
+
+    if (docSnap.exists) {
+      return docSnap.data().checked || {};
+    }
+
+    return {};
+  } catch (err) {
+    console.error("Error loading checklist from Firestore:", err);
+    return {};
+  }
+}
+
+async function saveChecklistToFirestore() {
+  if (!currentUser) return;
+
+  try {
+    await db.collection("checklists").doc(currentUser.uid).set({
+      checked: currentChecklistState,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge: true });
+  } catch (err) {
+    console.error("Error saving checklist to Firestore:", err);
+  }
+}
+
+signInBtn?.addEventListener("click", async () => {
+  try {
+    await auth.signInWithPopup(provider);
+  } catch (err) {
+    console.error("Google sign-in failed:", err);
+  }
+});
+
+signOutBtn?.addEventListener("click", async () => {
+  try {
+    await auth.signOut();
+  } catch (err) {
+    console.error("Sign-out failed:", err);
+  }
+});
+
+
+auth.onAuthStateChanged(async (user) => {
+  currentUser = user;
+
+  if (user) {
+    signInBtn.style.display = "none";
+    signOutBtn.style.display = "inline-block";
+
+    if (userStatus) {
+      userStatus.innerHTML = `<span>Signed</span><span style="display:block; margin-top:2px;">in!</span>`;
+    }
+
+    const localState = getLocalChecklistState();
+    const cloudState = await loadChecklistFromFirestore(user);
+
+    // cloud wins if same key exists in both
+    const mergedState = { ...localState, ...cloudState };
+
+    applyChecklistState(mergedState);
+    updateProgressCounter();
+
+    await db.collection("checklists").doc(user.uid).set({
+      checked: mergedState,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge: true });
+  } else {
+    signInBtn.style.display = "inline-block";
+    signOutBtn.style.display = "none";
+
+    if (userStatus) {
+      userStatus.innerHTML = `<span>Not</span><span style="display:block; margin-top:2px;">Signed in!</span>`;
+    }
+
+    const localState = getLocalChecklistState();
+    applyChecklistState(localState);
+    updateProgressCounter();
+  }
+});
+
+//---------------------------------Google----------------------------------------------//
 
 
 // standalone-units-loader.js
 // Drop this into a fresh JS file. Place <script src="standalone-units-loader.js"></script> near </body>.
 
-// -------------------- CONFIG --------------------
+//---------------------------------Config----------------------------------------------//
 const dataPath = "data/units.json"; // your single JSON file
 const imgFolderPrefix = "images/units2"; // base folder
 const imgExt = ".png"; // change to .webp if you prefer
@@ -152,8 +255,8 @@ function renderSeasonInto(container, seasonName, units) {
   ? units.filter(u => u.type !== "pet" && (u.rarity || "").toLowerCase() !== "hero")
   : units;
 
-const nonPets = filteredUnits.filter(u => u.type !== "pet");
-const petUnits = filteredUnits.filter(u => u.type === "pet");
+  const nonPets = filteredUnits.filter(u => u.type !== "pet");
+  const petUnits = filteredUnits.filter(u => u.type === "pet");
 
   const sortedNonPets = nonPets.slice().sort((a, b) => {
     const ia = Math.max(0, rarityOrder.indexOf((a.rarity || "").toLowerCase()));
@@ -246,21 +349,43 @@ function setupAllImages() {
   updateProgressCounter();
 }
 
-function onImageClick(e) {
+async function onImageClick(e) {
   const img = e.currentTarget;
   const wrapper = img.closest('.image-wrapper');
-  const id = img.dataset.id || img.dataset.id === "" ? img.dataset.id : img.getAttribute('data-id');
+  const id = img.dataset.id || img.getAttribute('data-id');
 
   // toggle classes
   const nowChecked = img.classList.toggle('checked');
   if (wrapper) wrapper.classList.toggle('checked');
 
-  // persist
+  // save locally
   localStorage.setItem(`checked-${id}`, nowChecked ? "true" : "false");
+
+  // update in-memory state
+  currentChecklistState[id] = nowChecked;
+
+  // save to Firebase
+  await saveChecklistToFirestore();
 
   // update progress visuals
   updateProgressCounter();
 }
+
+
+async function saveChecklistToFirestore() {
+  if (!currentUser) return; // not signed in → do nothing
+
+  try {
+    await db.collection("checklists")
+      .doc(currentUser.uid)
+      .set({
+        checked: currentChecklistState
+      }, { merge: true });
+  } catch (err) {
+    console.error("Firestore save failed:", err);
+  }
+}
+
 
 // read saved state for all current .checkable images
 function getLocalChecklistState() {
@@ -276,9 +401,12 @@ function getLocalChecklistState() {
 
 // apply a state object (assumes keys are data-id)
 function applyChecklistState(state) {
+  currentChecklistState = { ...state };
+
   document.querySelectorAll('.checkable').forEach(img => {
     const id = img.dataset.id;
     const checked = !!state[id];
+
     if (checked) {
       img.classList.add('checked');
       const wrapper = img.closest('.image-wrapper');
@@ -292,6 +420,7 @@ function applyChecklistState(state) {
     }
   });
 }
+
 
 // -------------------- PROGRESS COUNTER --------------------
 function updateProgressCounter() {
@@ -701,3 +830,12 @@ document.addEventListener("keydown", (e) => {
     closeAllNavSections();
   }
 });
+
+
+
+
+
+
+
+
+
