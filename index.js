@@ -450,19 +450,16 @@ if (activeTab)
 // ==================
 // SOUND EFFECT
 // ==================
-const hoverSound = new Audio('./sounds/hover-sound.mp3');
+const clickSound = new Audio('./sounds/hover-sound.mp3');
 
 tabsT.forEach(tabT => {
-  tabT.addEventListener('mouseenter', () => 
-  {
-    if (!tabT.classList.contains("active")) 
-    {
-      hoverSound.currentTime = 0;
-      hoverSound.play();
+  tabT.addEventListener('click', () => {
+    if (!tabT.classList.contains("active")) {
+      clickSound.currentTime = 0;
+      clickSound.play();
     }
   });
 });
-
 
 
 
