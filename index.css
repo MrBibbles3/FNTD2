@@ -1093,6 +1093,9 @@ a:visited {
   pointer-events: none;
   z-index: 0;
 }
+
+
+
 /*-------------------------------------SHINIES-------------------------------------------*/
 .tab-container.shiny-mode .image-wrapper.checked::before {
   top: -3px;
@@ -1332,8 +1335,8 @@ a:visited {
   }
 
   .image-grid {
-    grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 10px;
     padding: 10px;
   }
 
@@ -1593,4 +1596,63 @@ a:visited {
     transform: scale(0.8);
     transform-origin: center;
   }
+
+
+
+
+
+
+
+  
+
+
+
+  /*-----------------------------------------------------------------------------------*/
+
+
+  .image-wrapper.hero::before,
+  .image-wrapper.uncommon::before,
+  .image-wrapper.rare::before,
+  .image-wrapper.epic::before,
+  .image-wrapper.mythic::before,
+  .image-wrapper.secret::before,
+  .image-wrapper.exclusive::before,
+  .image-wrapper.nightmare::before,
+  .image-wrapper.apex::before {
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    padding: 4px;
+    border-radius: 6px; /* optional, slightly smaller corners */
+    z-index: 100;
+  }
+
+
+
+.image-wrapper.checked.hero::before,
+.image-wrapper.checked.uncommon::before,
+.image-wrapper.checked.rare::before,
+.image-wrapper.checked.epic::before,
+.image-wrapper.checked.mythic::before,
+.image-wrapper.checked.secret::before,
+.image-wrapper.checked.exclusive::before,
+.image-wrapper.checked.nightmare::before,
+.image-wrapper.checked.apex::before {
+  top: 2px;    /* smaller border */
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border-radius: 6px; /* optional, slightly smaller corners */
+  box-shadow: 0 0 150px rgba(0,0,0,0.7); /* stronger shadow on tick */
+  z-index: 100;
+}
+
+
+
+  .image-wrapper:not(.checked):hover {
+    transform: none;
+  }
+
+  /*WE CANNOT CHANGE THE BACKGROUND FOR SOME REASON??? IDK WE SUGGGEST MAYBE MAKING THE IMAGE LARGER, SO WHEN IT IS SHRUNK THE BACKGROUND IS SHRUNK WITH IT*/
 }
