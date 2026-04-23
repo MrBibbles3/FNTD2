@@ -40,7 +40,10 @@ html::-webkit-scrollbar-thumb:hover {
 
   background-color: #202434;
   color: #ffffff;
-  padding: 10px;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   border: 10px solid #3498db;
   border-radius: 108px;
 
@@ -48,12 +51,12 @@ html::-webkit-scrollbar-thumb:hover {
   line-height: 1.4;
 
   width: auto;
-  max-width: 600px;
+  max-width: 900px;
   min-height: 100px;
   box-sizing: border-box;
 
   white-space: normal;
-  word-break: break-word;
+/*  word-break: break-word;*/
 
   flex: 0 1 auto;
 }

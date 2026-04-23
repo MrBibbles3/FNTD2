@@ -389,15 +389,18 @@ async function saveChecklistToFirestore() {
 
 // read saved state for all current .checkable images
 function getLocalChecklistState() {
-  const images = document.querySelectorAll('.checkable');
   const state = {};
-  images.forEach(img => {
-    const id = img.dataset.id;
-    const val = localStorage.getItem(`checked-${id}`);
-    state[id] = (val === "true");
+
+  Object.keys(localStorage).forEach(key => {
+    if (key.startsWith("checked-")) {
+      const id = key.replace("checked-", "");
+      state[id] = localStorage.getItem(key) === "true";
+    }
   });
+
   return state;
 }
+
 
 // apply a state object (assumes keys are data-id)
 function applyChecklistState(state) {
