@@ -730,9 +730,6 @@ a:visited {
   transform: scale(1) translateZ(0);
 }
 
-.checkable:hover {
-
-}
 
 /*Literally just the tick + animation*/
 .tick {

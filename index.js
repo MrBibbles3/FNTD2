@@ -371,22 +371,6 @@ async function onImageClick(e) {
   updateProgressCounter();
 }
 
-
-async function saveChecklistToFirestore() {
-  if (!currentUser) return; // not signed in → do nothing
-
-  try {
-    await db.collection("checklists")
-      .doc(currentUser.uid)
-      .set({
-        checked: currentChecklistState
-      }, { merge: true });
-  } catch (err) {
-    console.error("Firestore save failed:", err);
-  }
-}
-
-
 // read saved state for all current .checkable images
 function getLocalChecklistState() {
   const state = {};
@@ -406,20 +390,22 @@ function getLocalChecklistState() {
 function applyChecklistState(state) {
   currentChecklistState = { ...state };
 
+  // Save ALL known checklist keys to localStorage,
+  // even if the unit is not currently rendered on screen
+  Object.keys(state).forEach(id => {
+    localStorage.setItem(`checked-${id}`, state[id] ? "true" : "false");
+  });
+
+  // Then update only the currently visible DOM elements
   document.querySelectorAll('.checkable').forEach(img => {
     const id = img.dataset.id;
     const checked = !!state[id];
 
-    if (checked) {
-      img.classList.add('checked');
-      const wrapper = img.closest('.image-wrapper');
-      if (wrapper) wrapper.classList.add('checked');
-      localStorage.setItem(`checked-${id}`, "true");
-    } else {
-      img.classList.remove('checked');
-      const wrapper = img.closest('.image-wrapper');
-      if (wrapper) wrapper.classList.remove('checked');
-      localStorage.setItem(`checked-${id}`, "false");
+    img.classList.toggle('checked', checked);
+
+    const wrapper = img.closest('.image-wrapper');
+    if (wrapper) {
+      wrapper.classList.toggle('checked', checked);
     }
   });
 }
