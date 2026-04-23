@@ -45,11 +45,11 @@
     "units": [
       { "id": "1", "rarity": "rare",     "evolution": true },
       { "id": "1", "rarity": "epic",     "type": "pet" },
-      { "id": "1", "rarity": "mythic"    },
       { "id": "2", "rarity": "mythic",   "evolution": true },
       { "id": "3", "rarity": "mythic",   "type": "pet" },
-      { "id": "1", "rarity": "secret",   "type": "pet" },
+      { "id": "1", "rarity": "secret"    },
       { "id": "2", "rarity": "secret",   "type": "pet" },
+      { "id": "3", "rarity": "secret",   "type": "pet" },
       { "id": "1", "rarity": "exclusive" },
       { "id": "2", "rarity": "exclusive" },
       { "id": "1", "rarity": "nightmare" },
