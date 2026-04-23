@@ -193,6 +193,7 @@
       { "id": "2", "rarity": "exclusive" },
       { "id": "3", "rarity": "exclusive", "type": "pet" },
       { "id": "4", "rarity": "exclusive", "type": "pet" },
+      { "id": "5", "rarity": "exclusive", "type": "pet" },
       { "id": "1", "rarity": "nightmare" },
       { "id": "2", "rarity": "nightmare" }
 ]
