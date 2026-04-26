@@ -100,42 +100,48 @@ mobileSignOutBtn?.addEventListener("click", async () => {
 auth.onAuthStateChanged(async (user) => {
   currentUser = user;
 
-  if (user) {
-    signInBtn && (signInBtn.style.display = "none");
-    signOutBtn && (signOutBtn.style.display = "inline-block");
-    mobileSignInBtn && (mobileSignInBtn.style.display = "none");
-    mobileSignOutBtn && (mobileSignOutBtn.style.display = "inline-block");
+  const isMobile = window.innerWidth <= 768;
 
-    if (userStatus) {
-      userStatus.innerHTML = `<span>Signed</span><span style="display:block; margin-top:2px;">in!</span>`;
-    }
+if (user) {
+  signInBtn && (signInBtn.style.display = "none");
+  signOutBtn && (signOutBtn.style.display = isMobile ? "none" : "inline-block");
 
-    const localState = getLocalChecklistState();
-    const cloudState = await loadChecklistFromFirestore(user);
-    const mergedState = { ...localState, ...cloudState };
+  mobileSignInBtn && (mobileSignInBtn.style.display = "none");
+  mobileSignOutBtn && (mobileSignOutBtn.style.display = isMobile ? "inline-block" : "none");
 
-    applyChecklistState(mergedState);
-    updateProgressCounter();
-
-    await db.collection("checklists").doc(user.uid).set({
-      checked: mergedState,
-      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-    }, { merge: true });
-  } else {
-    signInBtn && (signInBtn.style.display = "");
-    signOutBtn && (signOutBtn.style.display = "none");
-    mobileSignInBtn && (mobileSignInBtn.style.display = "inline-block");
-    mobileSignOutBtn && (mobileSignOutBtn.style.display = "none");
-
-    if (userStatus) {
-      userStatus.innerHTML = `<span>Not</span><span style="display:block; margin-top:2px;">Signed in!</span>`;
-    }
-
-    const localState = getLocalChecklistState();
-    applyChecklistState(localState);
-    updateProgressCounter();
+  if (userStatus) {
+    userStatus.innerHTML = `<span>Signed</span><span style="display:block; margin-top:2px;">in!</span>`;
   }
-});
+
+  const localState = getLocalChecklistState();
+  const cloudState = await loadChecklistFromFirestore(user);
+  const mergedState = { ...localState, ...cloudState };
+
+  applyChecklistState(mergedState);
+  updateProgressCounter();
+
+  await db.collection("checklists").doc(user.uid).set({
+    checked: mergedState,
+    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+  }, { merge: true });
+
+} else {
+  signInBtn && (signInBtn.style.display = isMobile ? "none" : "");
+  signOutBtn && (signOutBtn.style.display = "none");
+
+  mobileSignInBtn && (mobileSignInBtn.style.display = isMobile ? "inline-block" : "none");
+  mobileSignOutBtn && (mobileSignOutBtn.style.display = "none");
+
+  if (userStatus) {
+    userStatus.innerHTML = `<span>Not</span><span style="display:block; margin-top:2px;">Signed in!</span>`;
+  }
+
+  const localState = getLocalChecklistState();
+  applyChecklistState(localState);
+  updateProgressCounter();
+}
+}
+);
 
 //---------------------------------Google----------------------------------------------//
 
