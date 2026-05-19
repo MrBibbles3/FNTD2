@@ -8,6 +8,7 @@ body {
 
   background: url("images/space.jpg") no-repeat center center fixed;
   background-size: cover;
+  background-color: black;
 }
 
 html::-webkit-scrollbar { width: 10px; }

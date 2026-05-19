@@ -278,11 +278,18 @@ function renderSeasonInto(container, seasonName, units) {
   const seasonFolder = isShinyMode ? `${seasonName}S` : seasonName;
 
   const filteredUnits = isShinyMode
-  ? units.filter(u => u.type !== "pet" && (u.rarity || "").toLowerCase() !== "hero")
+  ? units.filter(u => 
+    (
+      u.type !== "pet" ||
+      u.shiny === "yes"
+    ) && 
+    (u.rarity || "").toLowerCase() !== "hero"  
+  )
   : units;
 
   const nonPets = filteredUnits.filter(u => u.type !== "pet");
   const petUnits = filteredUnits.filter(u => u.type === "pet");
+  const petUnitsShiny = filteredUnits.filter(u => u.shiny === "yes");
 
   const sortedNonPets = nonPets.slice().sort((a, b) => {
     const ia = Math.max(0, rarityOrder.indexOf((a.rarity || "").toLowerCase()));

@@ -72,6 +72,7 @@
       { "id": "3", "rarity": "exclusive" },
       { "id": "4", "rarity": "exclusive" },
       { "id": "1", "rarity": "nightmare" },
+      { "id": "2", "rarity": "nightmare" },
       { "id": "1", "rarity": "apex"      },
       { "id": "2", "rarity": "apex"      }
     ]
@@ -181,19 +182,39 @@
     "units": [
       { "id": "1", "rarity": "hero" },
       { "id": "2", "rarity": "hero" },
+      { "id": "3", "rarity": "hero" },
       { "id": "1", "rarity": "rare" },
       { "id": "1", "rarity": "epic" },
+      { "id": "2", "rarity": "epic", "type":"pet"},
       { "id": "1", "rarity": "mythic" },
       { "id": "2", "rarity": "mythic" },
       { "id": "1", "rarity": "secret" },
       { "id": "2", "rarity": "secret" },
       { "id": "3", "rarity": "secret" },
       { "id": "4", "rarity": "secret" },
+      { "id": "5", "rarity": "secret" },
       { "id": "1", "rarity": "exclusive" },
       { "id": "2", "rarity": "exclusive" },
       { "id": "3", "rarity": "exclusive", "type": "pet" },
       { "id": "4", "rarity": "exclusive", "type": "pet" },
       { "id": "5", "rarity": "exclusive", "type": "pet" },
+      { "id": "6", "rarity": "exclusive", "type": "pet", "shiny": "yes" },
+      { "id": "7", "rarity": "exclusive"},
+      { "id": "1", "rarity": "nightmare" },
+      { "id": "2", "rarity": "nightmare" },
+      { "id": "3", "rarity": "nightmare" },
+      { "id": "1", "rarity": "apex"}
+]
+  },
+    "HV": {
+    "units": [
+      { "id": "1", "rarity": "epic", "type": "pet"},
+      { "id": "1", "rarity": "secret" },
+      { "id": "2", "rarity": "secret" },
+      { "id": "3", "rarity": "secret" },
+      { "id": "4", "rarity": "secret" },
+      { "id": "5", "rarity": "secret" },
+      { "id": "1", "rarity": "exclusive", "type": "pet"},
       { "id": "1", "rarity": "nightmare" },
       { "id": "2", "rarity": "nightmare" }
 ]
