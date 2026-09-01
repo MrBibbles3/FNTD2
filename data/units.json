@@ -320,7 +320,7 @@
       { "id": "1", "rarity": "mythic" },
       { "id": "2", "rarity": "mythic" },
       { "id": "3", "rarity": "mythic" },
-      { "id": "4", "rarity": "mythic" },
+      { "id": "4", "rarity": "mythic", "type": "pet"},
       { "id": "1", "rarity": "nightmare" },
       { "id": "2", "rarity": "nightmare" },
       { "id": "3", "rarity": "nightmare" },
