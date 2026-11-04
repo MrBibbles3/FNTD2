@@ -1234,7 +1234,19 @@ a:visited {
 
 
 
+/*---extra---*/
+/* Event tabs only */
+.tab-top.events {
+  gap: 10px;
+}
 
+.tab-top.events .tabT.active {
+  padding: 0 45px;
+}
+
+.tab-top.events .white-top > .tabT:not(.active) {
+  padding: 0 20px;
+}
 
 
 
